@@ -15,13 +15,12 @@ end
 get '/' do
 	# выбираем список постов из БД
 
-#	@results = @db.execute 'select * from Posts order by id desc'
+	@results = Post.all
 
-#	erb :index			
+	erb :index			
 #end
 
 #get '/new' do
-  erb "Hello world"
 end
 
 #post '/new' do
