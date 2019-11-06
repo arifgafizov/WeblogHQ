@@ -1,0 +1,15 @@
+<h2 class="text-center"><em>Post details:</em></h2>
+<br/>
+<p>
+	<br/>
+	<%= @post_detail['content'] %>
+	<br/>
+	<span style="font-size: 80%; color: #555">Added at <%= @post_detail['created_date'] %></span>
+</p>
+<br/>
+<h4>Comment:</h4>
+<form action='/details/<%= @post_detail['id'] %>' method='POST'>
+	<textarea name="content" class="form-control" rows="6" placeholder="Type comment text here" style="width: 800px" value="<%= @content %>"></textarea>
+	<br/>
+	<button type="submit" class="btn btn-primary">Send comment</button>
+</form>
