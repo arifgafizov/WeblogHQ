@@ -18,9 +18,10 @@ get '/' do
 	@results = Post.all
 
 	erb :index			
-#end
+end
 
-#get '/new' do
+get '/new' do
+	erb :new
 end
 
 #post '/new' do
