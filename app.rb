@@ -1,49 +1,32 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-require 'sqlite3'
+require 'sinatra/activerecord'
 
-def init_db
-	@db = SQLite3::Database.new 'weblog.db'
-	# возвращает результат как хеш а не массив
-	@db.results_as_hash = true 
+
+# создаем сущность
+set :database, "sqlite3:weblog.db"
+
+
+class Post < ActiveRecord::Base
 end
 
-# before вызывается каждый раз при перезагрузке
-# любой страницы
-
-before do
-	# индициализация БД
-	init_db
-end
-
-configure do
-	init_db
-	# создает таблицу если таблица не существует
-	@db.execute 'create table if not exists Posts
-	(
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		created_date DATE,
-		content TEXT,
-		username TEXT
-	)'
-end
 
 get '/' do
 	# выбираем список постов из БД
 
-	@results = @db.execute 'select * from Posts order by id desc'
+#	@results = @db.execute 'select * from Posts order by id desc'
 
-	erb :index			
+#	erb :index			
+#end
+
+#get '/new' do
+  erb "Hello world"
 end
 
-get '/new' do
-  erb :new
-end
-
-post '/new' do
-	@content = params[:content]
-	@username = params[:username]
+#post '/new' do
+#	@content = params[:content]
+#	@username = params[:username]
 
 	#if content.length < 1
 	#	@error = 'Type post text'
@@ -54,38 +37,38 @@ post '/new' do
 	#end
 
 	# сохранение ввода при не полном заполнении данных
-	hh = {
-		:content => 'Type post text',
-		:username => 'Type your name'
-		}
+#	hh = {
+#		:content => 'Type post text',
+#		:username => 'Type your name'
+#		}
 
 
-	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
+#	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 
-	if @error != ""
-		return erb :new
-	end
+#	if @error != ""
+#		return erb :new
+#	end
 
   
   	# сохранение данных в БД
 
-	@db.execute 'insert into Posts (content, created_date, username) values (?, datetime(), ?)', [@content, @username]
+#	@db.execute 'insert into Posts (content, created_date, username) values (?, datetime(), ?)', [@content, @username]
 	
 	# перенаправление на главную страницу
 
-	redirect to '/'
-end
+#	redirect to '/'
+#end
 
-get '/details/:post_id' do
+#get '/details/:post_id' do
   	# получаем переменную из url'a
-	post_id = params[:post_id]
+#	post_id = params[:post_id]
 
 	# получаем список постов
 	# (у нас будет только один пост)
-	results = @db.execute 'select * from Posts where id = ?', [post_id]
+#	results = @db.execute 'select * from Posts where id = ?', [post_id]
 	
 	# выбираем этот один пост в переменную @row
-	@post_detail = results[0]
+#	@post_detail = results[0]
 
-	erb :details
-end
+#	erb :details
+#end
