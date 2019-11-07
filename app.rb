@@ -44,7 +44,8 @@ post '/new' do
 	end
 end
 
-#get '/details/:post_id' do
+get '/details/:id' do
+	erb "Hello"
   	# получаем переменную из url'a
 #	post_id = params[:post_id]
 
@@ -56,4 +57,4 @@ end
 #	@post_detail = results[0]
 
 #	erb :details
-#end
+end
