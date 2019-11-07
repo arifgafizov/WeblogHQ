@@ -15,7 +15,7 @@ end
 get '/' do
 	# выбираем список постов из БД
 
-	@results = Post.all
+	@results = Post.order('created_at DESC')
 
 	erb :index			
 end
