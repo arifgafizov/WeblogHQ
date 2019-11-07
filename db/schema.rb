@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_134542) do
+ActiveRecord::Schema.define(version: 2019_11_07_130410) do
 
   create_table "posts", force: :cascade do |t|
-    t.date "created_date"
     t.text "content"
     t.text "username"
     t.datetime "created_at", precision: 6, null: false

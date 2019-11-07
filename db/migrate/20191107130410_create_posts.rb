@@ -5,6 +5,6 @@ class CreatePosts < ActiveRecord::Migration[6.0]
      t.text :username
 
      t.timestamps
-	end
+	end 
   end
 end

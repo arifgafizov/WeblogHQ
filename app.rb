@@ -21,10 +21,18 @@ get '/' do
 end
 
 get '/new' do
+	# создаем пустой объект чтоб переменная @p определилась при get запросе
+	@p = Post.new
+
 	erb :new
 end
 
-#post '/new' do
+post '/new' do
+	# Принимаем хеш с данными из вида new
+	@p = Post.new params[:post]
+	@p.save
+
+
 #	@content = params[:content]
 #	@username = params[:username]
 
@@ -57,7 +65,7 @@ end
 	# перенаправление на главную страницу
 
 #	redirect to '/'
-#end
+end
 
 #get '/details/:post_id' do
   	# получаем переменную из url'a
