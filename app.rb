@@ -33,6 +33,8 @@ post '/new' do
 	@p.save
 
 
+
+
 #	@content = params[:content]
 #	@username = params[:username]
 
@@ -64,7 +66,7 @@ post '/new' do
 	
 	# перенаправление на главную страницу
 
-#	redirect to '/'
+	redirect to '/'
 end
 
 #get '/details/:post_id' do
