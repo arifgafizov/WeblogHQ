@@ -42,43 +42,6 @@ post '/new' do
 		@error = @p.errors.full_messages.first
 		erb :new
 	end
-
-
-
-
-
-#	@content = params[:content]
-#	@username = params[:username]
-
-	#if content.length < 1
-	#	@error = 'Type post text'
-	#	return erb :new
-	#elsif username.length < 1
-	#	@error = 'Type your name'
-	#	return erb :new
-	#end
-
-	# сохранение ввода при не полном заполнении данных
-#	hh = {
-#		:content => 'Type post text',
-#		:username => 'Type your name'
-#		}
-
-
-#	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
-
-#	if @error != ""
-#		return erb :new
-#	end
-
-  
-  	# сохранение данных в БД
-
-#	@db.execute 'insert into Posts (content, created_date, username) values (?, datetime(), ?)', [@content, @username]
-	
-	# перенаправление на главную страницу
-
-#	redirect to '/'
 end
 
 #get '/details/:post_id' do
