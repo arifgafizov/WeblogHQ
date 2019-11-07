@@ -9,6 +9,10 @@ set :database, "sqlite3:weblog.db"
 
 
 class Post < ActiveRecord::Base
+	# Параметры валидации: валидация на пустое значение  и на минимум 3 знака имени
+	validates :content, presence: true
+	validates :username, presence: true, length: { minimum: 3}
+
 end
 
 
@@ -30,7 +34,15 @@ end
 post '/new' do
 	# Принимаем хеш с данными из вида new
 	@p = Post.new params[:post]
-	@p.save
+
+	# Валидация
+	if @p.save
+		redirect to '/'
+	else
+		@error = @p.errors.full_messages.first
+		erb :new
+	end
+
 
 
 
@@ -66,7 +78,7 @@ post '/new' do
 	
 	# перенаправление на главную страницу
 
-	redirect to '/'
+#	redirect to '/'
 end
 
 #get '/details/:post_id' do
