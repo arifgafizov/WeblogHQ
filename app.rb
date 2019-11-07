@@ -15,6 +15,11 @@ class Post < ActiveRecord::Base
 
 end
 
+before do
+	# создаем пустой объект чтоб переменная @p определилась при get запросе
+	@p = Post.new
+end
+
 
 get '/' do
 	# выбираем список постов из БД
@@ -25,9 +30,6 @@ get '/' do
 end
 
 get '/new' do
-	# создаем пустой объект чтоб переменная @p определилась при get запросе
-	@p = Post.new
-
 	erb :new
 end
 
@@ -45,7 +47,7 @@ post '/new' do
 end
 
 get '/details/:id' do
-	erb "Hello"
+	@the_post = Post.find(params[:id])
   	# получаем переменную из url'a
 #	post_id = params[:post_id]
 
@@ -56,5 +58,5 @@ get '/details/:id' do
 	# выбираем этот один пост в переменную @row
 #	@post_detail = results[0]
 
-#	erb :details
+	erb :details
 end
