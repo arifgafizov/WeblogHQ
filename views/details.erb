@@ -4,9 +4,17 @@
 	<br/>
 	<%= @the_post.content %>
 	<br/>
-	<%= @the_post.username %>
+	<span style="font-size: 100%; color: #5bc0de"><strong><%= @the_post.username %></strong></span>
 	<br/>
 	<br/>
 	<span style="font-size: 80%; color: #555">Added at <%= @the_post.created_at %></span>
 </p>
 <br/>
+<h4>Comments:</h4>
+
+
+<form action='/details/<%= @c.id %>' method='POST'>
+	<textarea name="content" class="form-control" rows="6" placeholder="Type comment text here" style="width: 800px" value="<%= @c.content_com %>"></textarea>
+	<br/>
+	<button type="submit" class="btn btn-primary">Send comment</button>
+</form>

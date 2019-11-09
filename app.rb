@@ -9,6 +9,7 @@ set :database, "sqlite3:weblog.db"
 
 
 class Post < ActiveRecord::Base
+	has_many :comments
 	# Параметры валидации: валидация на пустое значение  и на минимум 3 знака имени
 	validates :content, presence: true
 	validates :username, presence: true, length: { minimum: 3}
@@ -52,6 +53,7 @@ end
 
 get '/details/:id' do
 	@the_post = Post.find(params[:id])
+	@c = Comment.new
   	# получаем переменную из url'a
 #	post_id = params[:post_id]
 
@@ -63,4 +65,11 @@ get '/details/:id' do
 #	@post_detail = results[0]
 
 	erb :details
+end
+
+post '/details/' do
+	# Принимаем хеш с данными из вида details/:id
+	@c = Comment.new params[:comment]
+	@c.save
+
 end
