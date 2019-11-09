@@ -15,10 +15,13 @@ class Post < ActiveRecord::Base
 
 end
 
-before do
-	# создаем пустой объект чтоб переменная @p определилась при get запросе
-	@p = Post.new
+class Comment < ActiveRecord::Base
 end
+
+#before do
+	# создаем пустой объект чтоб переменная @p определилась при get запросе
+#	@p = Post.new
+#end
 
 
 get '/' do
@@ -26,10 +29,11 @@ get '/' do
 
 	@results = Post.order('created_at DESC')
 
-	erb :index			
+	erb :index
 end
 
 get '/new' do
+	@p = Post.new
 	erb :new
 end
 
@@ -54,7 +58,7 @@ get '/details/:id' do
 	# получаем список постов
 	# (у нас будет только один пост)
 #	results = @db.execute 'select * from Posts where id = ?', [post_id]
-	
+
 	# выбираем этот один пост в переменную @row
 #	@post_detail = results[0]
 
